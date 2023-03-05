@@ -1,6 +1,6 @@
 // color design tokens export
 export const tokensDark = {
-  main: {
+  grey: {
     0: "#ffffff",
     10: "#f6f6f6",
     50: "#f0f0f0",
@@ -16,15 +16,16 @@ export const tokensDark = {
     1000: "#000000",
   },
   primary: {
-    100: "#ecd6ed",
-    200: "#daaeda",
-    300: "#c785c8",
-    400: "#b55db5",
-    500: "#a234a3",
-    600: "#822a82",
-    700: "#611f62",
-    800: "#411541",
-    900: "#200a21",
+    50: "#DFEAF2",
+    100: "#cfe5f6",
+    200: "#a0caed",
+    300: "#70b0e4",
+    400: "#4195db",
+    500: "#117bd2",
+    600: "#0e62a8",
+    700: "#0a4a7e",
+    800: "#073154",
+    900: "#03192a",
   },
   secondary: {
     100: "#eef3d9",
@@ -60,7 +61,7 @@ export const tokensLight = reverseTokens(tokensDark);
 export const themeSettings = (mode) => {
   return {
     palette: {
-      mode: mode,
+      mode,
       ...(mode === "dark"
         ? {
             // palette values for dark mode
@@ -78,8 +79,8 @@ export const themeSettings = (mode) => {
               main: tokensDark.grey[500],
             },
             background: {
-              default: tokensDark.primary[600],
-              alt: tokensDark.primary[500],
+              default: tokensDark.primary[900],
+              alt: tokensDark.primary[900],
             },
           }
         : {
@@ -99,8 +100,8 @@ export const themeSettings = (mode) => {
               main: tokensDark.grey[500],
             },
             background: {
-              default: tokensDark.grey[0],
-              alt: tokensDark.grey[50],
+              default: tokensDark.primary[50],
+              alt: tokensDark.primary[50],
             },
           }),
     },

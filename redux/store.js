@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import modeSlice from "./slice/modeSlice";
 
 const rootReducer = combineReducers({
-  mode: modeSlice,
+  background: modeSlice,
 });
 
 const store = configureStore({
