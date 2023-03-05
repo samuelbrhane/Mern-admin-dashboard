@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .icon {
+    @apply hover:scale-110 hover:opacity-95 text-lg hover:shadow  hover:ring-1;
+  }
+}

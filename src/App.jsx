@@ -1,18 +1,17 @@
-import { selectMode } from "../redux/slice/modeSlice";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { themeSettings } from "./theme";
-import { BrowserRouter, Routes, Route, Navigate, json } from "react-router-dom";
-import { Layout } from "../components";
-import { Dashboard } from "../pages";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Layout } from "./components";
+import { Dashboard } from "./pages";
+import { selectMode } from "./redux/slice/modeSlice";
 
 function App() {
   const mode = useSelector(selectMode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  console.log("mode", mode);
-  console.log("theme: " + JSON.stringify(theme));
+
   return (
     <div className="App">
       <BrowserRouter>
