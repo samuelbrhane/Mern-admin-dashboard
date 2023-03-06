@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { selectMode } from "../redux/slice/modeSlice";
 import { useSelector } from "react-redux";
-import { AiFillHome, AiOutlineRight, AiFillCalendar } from "react-icons/ai";
+import {
+  AiFillHome,
+  AiOutlineRight,
+  AiFillCalendar,
+  AiFillCloseCircle,
+  AiOutlineClose,
+} from "react-icons/ai";
 import { BsFillCartFill, BsGeoFill, BsCalendarMonth } from "react-icons/bs";
 import { HiUsers } from "react-icons/hi";
 import { FaChartPie } from "react-icons/fa";
@@ -13,7 +19,7 @@ import { AiOutlineTransaction } from "react-icons/ai";
 import { GiOverInfinity } from "react-icons/gi";
 import SidebarLink from "./SidebarLink";
 
-const Sidebar = () => {
+const Sidebar = ({ closeIcon, setShowSidebar }) => {
   const mode = useSelector(selectMode);
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
@@ -22,22 +28,18 @@ const Sidebar = () => {
     {
       icon: <BsFillCartFill />,
       name: "Products",
-      link: "/products",
     },
     {
       icon: <HiUsers />,
       name: "Customers",
-      link: "/customers",
     },
     {
       icon: <AiOutlineTransaction />,
       name: "Transactions",
-      link: "/transactions",
     },
     {
       icon: <BsGeoFill />,
       name: "Geography",
-      link: "/geography",
     },
   ];
 
@@ -45,22 +47,18 @@ const Sidebar = () => {
     {
       icon: <GiOverInfinity />,
       name: "Overview",
-      link: "/overview",
     },
     {
       icon: <AiFillCalendar />,
       name: "Daily",
-      link: "/daily",
     },
     {
       icon: <BsCalendarMonth />,
       name: "Monthly",
-      link: "/monthly",
     },
     {
       icon: <FaChartPie />,
       name: "Breakdown",
-      link: "/breakdown",
     },
   ];
 
@@ -68,12 +66,10 @@ const Sidebar = () => {
     {
       icon: <RiAdminFill />,
       name: "Admin",
-      link: "/admin",
     },
     {
       icon: <CgPerformance />,
       name: "Performance",
-      link: "/performance",
     },
   ];
 
@@ -84,19 +80,36 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`w-[250px] absolute top-0 left-0 bottom-0 py-3 shadow-md ${
+      className={`${
+        closeIcon && "!w-[235px]"
+      } w-[250px] absolute top-0 left-0 bottom-0 py-3 z-20 shadow-md ${
         mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"
       }`}
     >
-      <h1 className="text-center text-xl uppercase text-[#92df39] font-bold mb-3 border-b-2 border-gray-400 pb-1">
-        Office
-      </h1>
+      <div className="relative">
+        <h1 className="text-center text-xl uppercase text-[#92df39] font-bold mb-3 border-b-2 border-gray-400 pb-1">
+          Office
+        </h1>
+        {closeIcon && (
+          <AiOutlineClose
+            onClick={() => setShowSidebar(false)}
+            className="absolute top-1 left-2 icon"
+          />
+        )}
+      </div>
 
       {/* Dashboard */}
-      <div className="flex items-center justify-between bg-[#92df39] py-1 px-6">
-        <AiFillHome />
-        <h1>Dashboard</h1>
-        <AiOutlineRight />
+      <div
+        className={`${
+          active === "dashboard" &&
+          "bg-[#92df39] !text-[#1b3d23] hover:bg-[#b8ea7f] hover:opacity-90"
+        } py-1 px-6`}
+      >
+        <Link to={`/dashboard`} className="flex items-center justify-between">
+          <AiFillHome />
+          <h1>Dashboard</h1>
+          <AiOutlineRight />
+        </Link>
       </div>
 
       {/* client */}
@@ -104,7 +117,7 @@ const Sidebar = () => {
         <h1 className="mt-4 mb-2 pl-6">Client</h1>
         <div>
           {client?.map((item, index) => (
-            <SidebarLink key={index} {...item} />
+            <SidebarLink key={index} {...item} active={active} />
           ))}
         </div>
       </div>

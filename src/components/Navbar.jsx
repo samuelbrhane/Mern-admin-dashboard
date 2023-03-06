@@ -6,7 +6,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MdSettings, MdDarkMode } from "react-icons/md";
 import { BsFillSunFill } from "react-icons/bs";
 
-const Navbar = ({ setIsSidebarOpen }) => {
+const Navbar = ({ setShowSidebar }) => {
   const mode = useSelector(selectMode);
   const dispatch = useDispatch();
 
@@ -15,8 +15,8 @@ const Navbar = ({ setIsSidebarOpen }) => {
       {/* Left Side */}
       <div className="flex items-center gap-4">
         <AiOutlineMenu
-          className="cursor-pointer icon"
-          onClick={() => setIsSidebarOpen((prev) => !prev)}
+          className="cursor-pointer icon md:hidden"
+          onClick={() => setShowSidebar(true)}
         />
         <form className="relative md:w-[300px]">
           <input

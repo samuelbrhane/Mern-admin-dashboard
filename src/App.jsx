@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components";
-import { Dashboard } from "./pages";
+import { Dashboard, Products } from "./pages";
 import { selectMode } from "./redux/slice/modeSlice";
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
             </Route>
           </Routes>
         </ThemeProvider>

@@ -3,13 +3,24 @@ import { Outlet } from "react-router-dom";
 import { Navbar, Sidebar } from ".";
 
 const Layout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <section>
-      {isSidebarOpen && <Sidebar />}
+      <div className="hidden md:inline">
+        <Sidebar />
+      </div>
 
-      <div className={`${isSidebarOpen && "ml-[270px]"}`}>
-        <Navbar setIsSidebarOpen={setIsSidebarOpen} />
+      {/* small screen */}
+      <div
+        className={`md:hidden absolute top-0 duration-1000 ease-in-out ${
+          showSidebar ? "left-0" : "left-[-999px]"
+        } bottom-0 `}
+      >
+        <Sidebar closeIcon={true} setShowSidebar={setShowSidebar} />
+      </div>
+
+      <div className={"md:ml-[270px]"}>
+        <Navbar setShowSidebar={setShowSidebar} />
         <Outlet />
       </div>
     </section>
