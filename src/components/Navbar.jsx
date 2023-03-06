@@ -5,9 +5,8 @@ import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdSettings, MdDarkMode } from "react-icons/md";
 import { BsFillSunFill } from "react-icons/bs";
-import { useTheme } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = ({ setIsSidebarOpen }) => {
   const mode = useSelector(selectMode);
   const dispatch = useDispatch();
 
@@ -15,14 +14,17 @@ const Navbar = () => {
     <section className="flex justify-between items-center py-3 px-5">
       {/* Left Side */}
       <div className="flex items-center gap-4">
-        <AiOutlineMenu className="cursor-pointer icon" />
-        <form className="relative">
+        <AiOutlineMenu
+          className="cursor-pointer icon"
+          onClick={() => setIsSidebarOpen((prev) => !prev)}
+        />
+        <form className="relative md:w-[300px]">
           <input
             type="text"
             placeholder="Search..."
             className={`${
               mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"
-            } shadow py-1 px-3 rounded-md`}
+            } shadow py-1 px-3 rounded-md w-full`}
           />
           <button
             type="submit"

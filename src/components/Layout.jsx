@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import { Navbar, Sidebar } from ".";
 
 const Layout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   return (
     <section>
-      <div>
-        <Navbar />
+      {isSidebarOpen && <Sidebar />}
+
+      <div className={`${isSidebarOpen && "ml-[260px]"}`}>
+        <Navbar setIsSidebarOpen={setIsSidebarOpen} />
         <Outlet />
       </div>
     </section>
