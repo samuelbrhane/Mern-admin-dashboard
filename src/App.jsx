@@ -13,7 +13,7 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
-    <div className="App">
+    <div className={`${mode === "dark" ? "text-[#ecf3e4]" : "text-[#384d21]"}`}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />

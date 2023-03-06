@@ -8,7 +8,7 @@ const Layout = () => {
     <section>
       {isSidebarOpen && <Sidebar />}
 
-      <div className={`${isSidebarOpen && "ml-[260px]"}`}>
+      <div className={`${isSidebarOpen && "ml-[270px]"}`}>
         <Navbar setIsSidebarOpen={setIsSidebarOpen} />
         <Outlet />
       </div>
