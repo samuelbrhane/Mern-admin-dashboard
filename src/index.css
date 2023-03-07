@@ -9,4 +9,14 @@
   .links {
     @apply px-6;
   }
+  ::-webkit-scrollbar {
+    @apply w-[6px] h-[6px];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#92df39];
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-400;
+  }
 }
