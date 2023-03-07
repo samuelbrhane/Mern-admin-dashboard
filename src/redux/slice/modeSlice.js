@@ -8,7 +8,7 @@ const modeSlice = createSlice({
   name: "background",
   initialState,
   reducers: {
-    CHANGE_MODE: (state, actions) => {
+    CHANGE_MODE: (state, action) => {
       state.mode = state.mode === "dark" ? "light" : "dark";
     },
   },

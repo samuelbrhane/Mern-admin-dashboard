@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import modeSlice from "./slice/modeSlice";
-import productSlice from "./slice/productSlice";
+import clientSlice from "./slice/clientSlice";
 
 const rootReducer = combineReducers({
   background: modeSlice,
-  products: productSlice,
+  client: clientSlice,
 });
 
 const store = configureStore({

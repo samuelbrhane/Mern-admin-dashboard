@@ -1,6 +1,7 @@
 const host = import.meta.env.VITE_BACKEND_URL;
 
-// get all products
+// routes
 const productsRoute = `${host}/api/client/products`;
+const customersRoute = `${host}/api/client/customers`;
 
-export { productsRoute };
+export { productsRoute, customersRoute };
