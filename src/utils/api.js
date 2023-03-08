@@ -4,5 +4,6 @@ const host = import.meta.env.VITE_BACKEND_URL;
 const productsRoute = `${host}/api/client/products`;
 const customersRoute = `${host}/api/client/customers`;
 const transactionsRoute = `${host}/api/client/transactions`;
+const geographyRoute = `${host}/api/client/geography`;
 
-export { productsRoute, customersRoute, transactionsRoute };
+export { productsRoute, customersRoute, transactionsRoute, geographyRoute };

@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   customers: [],
   transactions: [],
+  geography: [],
 };
 
 const clientSlice = createSlice({
@@ -19,13 +20,17 @@ const clientSlice = createSlice({
     GET_TRANSACTIONS: (state, action) => {
       state.transactions = action.payload;
     },
+    GET_GEOGRAPHY: (state, action) => {
+      state.geography = action.payload;
+    },
   },
 });
 
-export const { GET_PRODUCTS, GET_CUSTOMERS, GET_TRANSACTIONS } =
+export const { GET_PRODUCTS, GET_CUSTOMERS, GET_TRANSACTIONS, GET_GEOGRAPHY } =
   clientSlice.actions;
 export const selectProducts = (state) => state.client.products;
 export const selectCustomers = (state) => state.client.customers;
 export const selectTransactions = (state) => state.client.transactions;
+export const selectGeography = (state) => state.client.geography;
 
 export default clientSlice.reducer;

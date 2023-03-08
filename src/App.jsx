@@ -5,15 +5,27 @@ import { useEffect, useMemo, useState } from "react";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components";
-import { Customers, Dashboard, Products, Transactions } from "./pages";
+import {
+  Customers,
+  Dashboard,
+  Geography,
+  Products,
+  Transactions,
+} from "./pages";
 import { selectMode } from "./redux/slice/modeSlice";
 import axios from "axios";
-import { customersRoute, productsRoute, transactionsRoute } from "./utils/api";
+import {
+  customersRoute,
+  geographyRoute,
+  productsRoute,
+  transactionsRoute,
+} from "./utils/api";
 import { useDispatch } from "react-redux";
 import {
   GET_PRODUCTS,
   GET_CUSTOMERS,
   GET_TRANSACTIONS,
+  GET_GEOGRAPHY,
 } from "./redux/slice/clientSlice";
 
 function App() {
@@ -28,9 +40,11 @@ function App() {
       const products = await axios.get(productsRoute);
       const customers = await axios.get(customersRoute);
       const transactions = await axios.get(transactionsRoute);
+      const geography = await axios.get(geographyRoute);
       dispatch(GET_PRODUCTS(products.data));
       dispatch(GET_CUSTOMERS(customers.data));
       dispatch(GET_TRANSACTIONS(transactions.data));
+      dispatch(GET_GEOGRAPHY(geography.data));
       setLoading(false);
     };
 
@@ -51,6 +65,7 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
+              <Route path="/geography" element={<Geography />} />
             </Route>
           </Routes>
         </ThemeProvider>
