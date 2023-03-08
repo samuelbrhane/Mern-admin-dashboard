@@ -1,37 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
-import { transactionRoute } from "../utils/api";
 import { Title } from "../components";
 import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
 
-const Transactions = () => {
-  // values to be sent to the backend
-  const mode = useSelector(selectMode);
-  const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(20);
-  const [sort, setSort] = useState({});
-  const [search, setSearch] = useState("");
-  const [transactions, setTransactions] = useState([]);
-  const [totalTransactions, setTotalTransactions] = useState(0);
+import { selectTransactions } from "../redux/slice/clientSlice";
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      const { data } = await axios.get(transactionRoute, {
-        params: {
-          page: page,
-          pageSize: pageSize,
-          sort: sort,
-          search: search,
-        },
-      });
-      setTransactions(data.transactions);
-      setTotalTransactions(data.totalTransactions);
-    };
-    fetchTransactions();
-  }, []);
+const Transactions = () => {
+  const mode = useSelector(selectMode);
+  const transactions = useSelector(selectTransactions);
 
   const columns = [
     {
@@ -68,7 +46,8 @@ const Transactions = () => {
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       <Title title="Transactions" subtitle="List of transactions" />
       <Box
-        height="80vh"
+        height="78vh"
+        mt="10px"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -100,16 +79,7 @@ const Transactions = () => {
           getRowId={(row) => row._id}
           rows={transactions || []}
           columns={columns}
-          rowCount={(totalTransactions && totalTransactions) || 0}
           rowsPerPageOptions={[20, 50, 100]}
-          pagination
-          page={page}
-          pageSize={pageSize}
-          paginationMode="server"
-          sortingMode="server"
-          onPageChange={(newPage) => setPage(newPage)}
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          onSortModelChange={(newSortModel) => setSort(...newSortModel)}
         />
       </Box>
     </section>

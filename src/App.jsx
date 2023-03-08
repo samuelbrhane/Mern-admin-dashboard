@@ -8,9 +8,13 @@ import { Layout } from "./components";
 import { Customers, Dashboard, Products, Transactions } from "./pages";
 import { selectMode } from "./redux/slice/modeSlice";
 import axios from "axios";
-import { customersRoute, productsRoute } from "./utils/api";
+import { customersRoute, productsRoute, transactionsRoute } from "./utils/api";
 import { useDispatch } from "react-redux";
-import { GET_PRODUCTS, GET_CUSTOMERS } from "./redux/slice/clientSlice";
+import {
+  GET_PRODUCTS,
+  GET_CUSTOMERS,
+  GET_TRANSACTIONS,
+} from "./redux/slice/clientSlice";
 
 function App() {
   const mode = useSelector(selectMode);
@@ -23,8 +27,10 @@ function App() {
     const getData = async () => {
       const products = await axios.get(productsRoute);
       const customers = await axios.get(customersRoute);
+      const transactions = await axios.get(transactionsRoute);
       dispatch(GET_PRODUCTS(products.data));
       dispatch(GET_CUSTOMERS(customers.data));
+      dispatch(GET_TRANSACTIONS(transactions.data));
       setLoading(false);
     };
 
