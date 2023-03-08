@@ -128,7 +128,7 @@ const Sidebar = ({ closeIcon, setShowSidebar }) => {
           <h1 className="mt-4 mb-2 pl-6">Sales</h1>
           <div>
             {sales?.map((item, index) => (
-              <SidebarLink key={index} {...item} />
+              <SidebarLink key={index} {...item} active={active} />
             ))}
           </div>
         </div>
@@ -138,7 +138,7 @@ const Sidebar = ({ closeIcon, setShowSidebar }) => {
           <h1 className="mt-4 mb-2 pl-6">Management</h1>
           <div>
             {management?.map((item, index) => (
-              <SidebarLink key={index} {...item} />
+              <SidebarLink key={index} {...item} active={active} />
             ))}
           </div>
         </div>

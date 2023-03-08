@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
 import { selectGeography } from "../redux/slice/clientSlice";
 import { Title } from "../components";
-import { ResponsiveChoroplethCanvas } from "@nivo/geo";
+import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoData } from "../utils/geoData";
 import { Box } from "@mui/material";
 
@@ -21,7 +21,7 @@ const Geography = () => {
         } shadow`}
       >
         {data && (
-          <ResponsiveChoroplethCanvas
+          <ResponsiveChoropleth
             data={data}
             features={geoData.features}
             margin={{ top: 0, right: 0, bottom: 0, left: -50 }}
@@ -53,7 +53,7 @@ const Geography = () => {
                   {
                     on: "hover",
                     style: {
-                      symbolSize: 20,
+                      itemTextColor: "#585759",
                       itemOpacity: 1,
                     },
                   },

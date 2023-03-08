@@ -9,6 +9,7 @@ import {
   Customers,
   Dashboard,
   Geography,
+  Overview,
   Products,
   Transactions,
 } from "./pages";
@@ -18,6 +19,7 @@ import {
   customersRoute,
   geographyRoute,
   productsRoute,
+  salesRoute,
   transactionsRoute,
 } from "./utils/api";
 import { useDispatch } from "react-redux";
@@ -27,6 +29,7 @@ import {
   GET_TRANSACTIONS,
   GET_GEOGRAPHY,
 } from "./redux/slice/clientSlice";
+import { GET_SALES } from "./redux/slice/saleSlice";
 
 function App() {
   const mode = useSelector(selectMode);
@@ -41,10 +44,12 @@ function App() {
       const customers = await axios.get(customersRoute);
       const transactions = await axios.get(transactionsRoute);
       const geography = await axios.get(geographyRoute);
+      const sales = await axios.get(salesRoute);
       dispatch(GET_PRODUCTS(products.data));
       dispatch(GET_CUSTOMERS(customers.data));
       dispatch(GET_TRANSACTIONS(transactions.data));
       dispatch(GET_GEOGRAPHY(geography.data));
+      dispatch(GET_SALES(sales.data));
       setLoading(false);
     };
 
@@ -66,6 +71,7 @@ function App() {
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/geography" element={<Geography />} />
+              <Route path="/overview" element={<Overview />} />
             </Route>
           </Routes>
         </ThemeProvider>

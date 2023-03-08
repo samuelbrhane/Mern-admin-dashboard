@@ -20,7 +20,7 @@ const ProductCard = ({
       <div
         className={`${
           mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"
-        } shadow p-3 text-sm`}
+        } shadow p-3 text-sm w-full`}
       >
         <h3 className="text-[#b4ce4d]">{category}</h3>
         <h4 className="text-[16px]">{name}</h4>
