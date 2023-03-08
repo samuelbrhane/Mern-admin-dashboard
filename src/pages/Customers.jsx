@@ -9,7 +9,7 @@ import { selectMode } from "../redux/slice/modeSlice";
 const Customers = () => {
   const customers = useSelector(selectCustomers);
   const mode = useSelector(selectMode);
-  console.log("mode", mode);
+
   const columns = [
     {
       field: "_id",
@@ -88,6 +88,7 @@ const Customers = () => {
           getRowId={(row) => row._id}
           rows={customers || []}
           columns={columns}
+          rowsPerPageOptions={[20, 50, 100]}
         />
       </Box>
     </section>

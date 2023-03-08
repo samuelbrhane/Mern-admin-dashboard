@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components";
-import { Customers, Dashboard, Products } from "./pages";
+import { Customers, Dashboard, Products, Transactions } from "./pages";
 import { selectMode } from "./redux/slice/modeSlice";
 import axios from "axios";
 import { customersRoute, productsRoute } from "./utils/api";
@@ -44,6 +44,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={<Customers />} />
+              <Route path="/transactions" element={<Transactions />} />
             </Route>
           </Routes>
         </ThemeProvider>
