@@ -83,7 +83,7 @@ const Chart = ({ view, totalSales }) => {
           tickRotation: 0,
           legendOffset: -40,
         }}
-        colors={{ scheme: "category10" }}
+        colors={{ scheme: "accent" }}
         lineWidth={1}
         pointSize={5}
         pointColor={{ theme: "background" }}

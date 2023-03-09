@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components";
 import {
   Customers,
+  Daily,
   Dashboard,
   Geography,
   Overview,
@@ -72,6 +73,7 @@ function App() {
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/geography" element={<Geography />} />
               <Route path="/overview" element={<Overview />} />
+              <Route path="/daily" element={<Daily />} />
             </Route>
           </Routes>
         </ThemeProvider>
