@@ -62,11 +62,7 @@ const Sidebar = ({ closeIcon, setShowSidebar }) => {
   const management = [
     {
       icon: <RiAdminFill />,
-      name: "Admin",
-    },
-    {
-      icon: <CgPerformance />,
-      name: "Performance",
+      name: "Admins",
     },
   ];
 

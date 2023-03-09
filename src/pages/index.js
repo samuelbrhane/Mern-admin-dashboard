@@ -6,3 +6,5 @@ export { default as Geography } from "./Geography";
 export { default as Overview } from "./Overview";
 export { default as Daily } from "./Daily";
 export { default as Monthly } from "./Monthly";
+export { default as Breakdown } from "./Breakdown";
+export { default as Admins } from "./Admins";

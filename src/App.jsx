@@ -6,6 +6,8 @@ import { themeSettings } from "./theme";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components";
 import {
+  Admins,
+  Breakdown,
   Customers,
   Daily,
   Dashboard,
@@ -18,6 +20,7 @@ import {
 import { selectMode } from "./redux/slice/modeSlice";
 import axios from "axios";
 import {
+  adminsRoute,
   customersRoute,
   geographyRoute,
   productsRoute,
@@ -31,6 +34,7 @@ import {
   GET_TRANSACTIONS,
   GET_GEOGRAPHY,
 } from "./redux/slice/clientSlice";
+import { GET_ADMINS } from "./redux/slice/managementSlice";
 import { GET_SALES } from "./redux/slice/saleSlice";
 
 function App() {
@@ -47,11 +51,13 @@ function App() {
       const transactions = await axios.get(transactionsRoute);
       const geography = await axios.get(geographyRoute);
       const sales = await axios.get(salesRoute);
+      const admins = await axios.get(adminsRoute);
       dispatch(GET_PRODUCTS(products.data));
       dispatch(GET_CUSTOMERS(customers.data));
       dispatch(GET_TRANSACTIONS(transactions.data));
       dispatch(GET_GEOGRAPHY(geography.data));
       dispatch(GET_SALES(sales.data));
+      dispatch(GET_ADMINS(admins.data));
       setLoading(false);
     };
 
@@ -76,6 +82,8 @@ function App() {
               <Route path="/overview" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
+              <Route path="/breakdown" element={<Breakdown />} />
+              <Route path="/admins" element={<Admins />} />
             </Route>
           </Routes>
         </ThemeProvider>
