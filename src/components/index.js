@@ -8,3 +8,5 @@ export { default as Chart } from "./Chart";
 export { default as TimelyChart } from "./TimelyChart";
 export { default as MainSidebar } from "./MainSidebar";
 export { default as MenuSidebar } from "./MenuSidebar";
+export { default as DataCard } from "./DataCard";
+export { default as PieChart } from "./PieChart";

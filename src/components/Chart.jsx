@@ -3,7 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
 
-const Chart = ({ view, totalSales }) => {
+const Chart = ({ view, totalSales, dashboard }) => {
   const mode = useSelector(selectMode);
   const monthlyData = totalSales[0].monthlyData;
   const totalSalesData = [
@@ -44,9 +44,9 @@ const Chart = ({ view, totalSales }) => {
 
   return (
     <section
-      className={`mt-4 w-full h-[68vh] ${
-        mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"
-      } shadow`}
+      className={`${!dashboard ? "mt-4" : "mt-2"} w-full ${
+        dashboard && "!h-[35vh] lg:!h-[42vh] xl:!h-[35vh]"
+      } h-[68vh] ${mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"} shadow`}
     >
       <ResponsiveLine
         data={view === "units" ? totalUnitsData : totalSalesData}
