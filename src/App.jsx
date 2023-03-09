@@ -10,6 +10,7 @@ import {
   Daily,
   Dashboard,
   Geography,
+  Monthly,
   Overview,
   Products,
   Transactions,
@@ -74,6 +75,7 @@ function App() {
               <Route path="/geography" element={<Geography />} />
               <Route path="/overview" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />
+              <Route path="/monthly" element={<Monthly />} />
             </Route>
           </Routes>
         </ThemeProvider>

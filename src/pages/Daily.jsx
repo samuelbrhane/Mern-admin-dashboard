@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TimelyChart, Title } from "../components";
 import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
 import { selectTotalSales } from "../redux/slice/saleSlice";
-import { ResponsiveLine } from "@nivo/line";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const Daily = () => {
