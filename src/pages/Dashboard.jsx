@@ -18,8 +18,6 @@ const Dashboard = () => {
   const customers = useSelector(selectCustomers);
   const totalSales = useSelector(selectTotalSales);
   const transactions = useSelector(selectTransactions);
-  console.log("totalSales", totalSales);
-  console.log("customers", customers);
 
   let yearlySales = 0;
   totalSales[0].monthlyData.forEach((data) => {

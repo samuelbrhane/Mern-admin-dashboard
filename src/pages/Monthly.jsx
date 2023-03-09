@@ -10,7 +10,6 @@ const Monthly = () => {
   const totalSales = useSelector(selectTotalSales);
   const monthlyData = totalSales[0].monthlyData;
   const [view, setView] = useState("units");
-  console.log("monthlyData", monthlyData);
 
   const monthlySalesData = {
     id: "sales",
