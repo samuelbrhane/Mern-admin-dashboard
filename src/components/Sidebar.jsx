@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { selectMode } from "../redux/slice/modeSlice";
-import { useSelector } from "react-redux";
 import {
   AiFillHome,
   AiOutlineRight,
@@ -20,7 +18,6 @@ import SidebarLink from "./SidebarLink";
 import admin from "../assets/admin.png";
 
 const Sidebar = ({ closeIcon, setShowSidebar }) => {
-  const mode = useSelector(selectMode);
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
 
@@ -79,13 +76,7 @@ const Sidebar = ({ closeIcon, setShowSidebar }) => {
   }, [pathname]);
 
   return (
-    <div
-      className={`${
-        closeIcon && "!w-[235px]"
-      } w-[250px] absolute top-0 left-0 bottom-0 py-3 z-20 shadow-md flex flex-col justify-between ${
-        mode === "dark" ? "bg-[#114a5d]" : "bg-[#f8fbfc]"
-      }`}
-    >
+    <>
       <div>
         <div className="relative">
           <h1 className="text-center text-xl uppercase text-[#92df39] font-bold mb-3 border-b-2 border-gray-400 pb-1">
@@ -152,7 +143,7 @@ const Sidebar = ({ closeIcon, setShowSidebar }) => {
           className="w-12 h-12 rounded-full bg-[#92df39]"
         />
       </div>
-    </div>
+    </>
   );
 };
 

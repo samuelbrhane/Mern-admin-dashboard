@@ -6,3 +6,5 @@ export { default as Title } from "./Title";
 export { default as ProductCard } from "./ProductCard";
 export { default as Chart } from "./Chart";
 export { default as TimelyChart } from "./TimelyChart";
+export { default as MainSidebar } from "./MainSidebar";
+export { default as MenuSidebar } from "./MenuSidebar";
