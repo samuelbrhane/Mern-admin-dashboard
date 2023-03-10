@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectCustomers } from "../redux/slice/clientSlice";
 import { DataGrid } from "@mui/x-data-grid";
-import { Title } from "../components";
+import { Loader, Title } from "../components";
 import { Box } from "@mui/material";
 import { selectMode } from "../redux/slice/modeSlice";
+import axios from "axios";
+import { customersRoute } from "../utils/api";
 
 const Customers = () => {
-  const customers = useSelector(selectCustomers);
+  const [loading, setLoading] = useState(true);
+  const [customers, setCustomers] = useState([]);
   const mode = useSelector(selectMode);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const customers = await axios.get(customersRoute);
+      setCustomers(customers.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const columns = [
     {
@@ -50,6 +61,8 @@ const Customers = () => {
       flex: 1,
     },
   ];
+
+  if (loading) return <Loader />;
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       <Title title="Customers" subtitle="List of customers." />

@@ -1,23 +1,30 @@
-import React, { useState } from "react";
-import { Title, DataCard, Chart, PieChart } from "../components";
+import React, { useEffect, useState } from "react";
+import { Title, DataCard, Chart, PieChart, Loader } from "../components";
 import { useSelector } from "react-redux";
 import { selectTotalSales } from "../redux/slice/saleSlice";
-import {
-  selectCustomers,
-  selectTransactions,
-} from "../redux/slice/clientSlice";
 import { FaUsers, FaVoteYea } from "react-icons/fa";
 import { MdOutlineChangeCircle, MdPointOfSale } from "react-icons/md";
 import { DataGrid } from "@mui/x-data-grid";
 import { selectMode } from "../redux/slice/modeSlice";
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import axios from "axios";
+import { transactionsRoute } from "../utils/api";
 
 const Dashboard = () => {
   const [view, setView] = useState("units");
+  const [loading, setLoading] = useState(true);
   const mode = useSelector(selectMode);
-  const customers = useSelector(selectCustomers);
+  const [transactions, setTransactions] = useState([]);
   const totalSales = useSelector(selectTotalSales);
-  const transactions = useSelector(selectTransactions);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const transactions = await axios.get(transactionsRoute);
+      setTransactions(transactions.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   let yearlySales = 0;
   totalSales[0].monthlyData.forEach((data) => {
@@ -99,6 +106,8 @@ const Dashboard = () => {
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
+
+  if (loading) return <Loader />;
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       <Title title="Dashboard" subtitle="Welcome to your dashboard." />

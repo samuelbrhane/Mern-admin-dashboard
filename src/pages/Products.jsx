@@ -1,11 +1,24 @@
-import React from "react";
-import { Title } from "../components";
+import React, { useEffect, useState } from "react";
+import { Loader, Title } from "../components";
 import { ProductCard } from "../components";
-import { useSelector } from "react-redux";
-import { selectProducts } from "../redux/slice/clientSlice";
+import axios from "axios";
+import { productsRoute } from "../utils/api";
 
 const Products = () => {
-  const products = useSelector(selectProducts);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await axios.get(productsRoute);
+      setProducts(products.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <Loader />;
+
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       {/* Title */}

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { Title } from "../components";
+import { Loader, Title } from "../components";
 import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
-
-import { selectTransactions } from "../redux/slice/clientSlice";
+import axios from "axios";
+import { transactionsRoute } from "../utils/api";
 
 const Transactions = () => {
   const mode = useSelector(selectMode);
-  const transactions = useSelector(selectTransactions);
+  const [loading, setLoading] = useState(true);
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const transactions = await axios.get(transactionsRoute);
+      setTransactions(transactions.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const columns = [
     {
@@ -41,6 +51,8 @@ const Transactions = () => {
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
+
+  if (loading) return <Loader />;
 
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">

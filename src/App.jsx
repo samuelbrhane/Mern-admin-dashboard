@@ -19,22 +19,9 @@ import {
 } from "./pages";
 import { selectMode } from "./redux/slice/modeSlice";
 import axios from "axios";
-import {
-  adminsRoute,
-  customersRoute,
-  geographyRoute,
-  productsRoute,
-  salesRoute,
-  transactionsRoute,
-} from "./utils/api";
+import { salesRoute } from "./utils/api";
 import { useDispatch } from "react-redux";
-import {
-  GET_PRODUCTS,
-  GET_CUSTOMERS,
-  GET_TRANSACTIONS,
-  GET_GEOGRAPHY,
-} from "./redux/slice/clientSlice";
-import { GET_ADMINS } from "./redux/slice/managementSlice";
+
 import { GET_SALES } from "./redux/slice/saleSlice";
 
 function App() {
@@ -44,20 +31,10 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   useEffect(() => {
-    // get data from api
+    // get sales data from api
     const getData = async () => {
-      const products = await axios.get(productsRoute);
-      const customers = await axios.get(customersRoute);
-      const transactions = await axios.get(transactionsRoute);
-      const geography = await axios.get(geographyRoute);
       const sales = await axios.get(salesRoute);
-      const admins = await axios.get(adminsRoute);
-      dispatch(GET_PRODUCTS(products.data));
-      dispatch(GET_CUSTOMERS(customers.data));
-      dispatch(GET_TRANSACTIONS(transactions.data));
-      dispatch(GET_GEOGRAPHY(geography.data));
       dispatch(GET_SALES(sales.data));
-      dispatch(GET_ADMINS(admins.data));
       setLoading(false);
     };
 

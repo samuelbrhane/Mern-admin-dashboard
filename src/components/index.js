@@ -10,3 +10,4 @@ export { default as MainSidebar } from "./MainSidebar";
 export { default as MenuSidebar } from "./MenuSidebar";
 export { default as DataCard } from "./DataCard";
 export { default as PieChart } from "./PieChart";
+export { default as Loader } from "./Loader";

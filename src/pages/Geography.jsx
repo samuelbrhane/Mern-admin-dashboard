@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectMode } from "../redux/slice/modeSlice";
-import { selectGeography } from "../redux/slice/clientSlice";
-import { Title } from "../components";
+import { Loader, Title } from "../components";
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoData } from "../utils/geoData";
 import { Box } from "@mui/material";
+import axios from "axios";
+import { geographyRoute } from "../utils/api";
 
 const Geography = () => {
   const mode = useSelector(selectMode);
-  const data = useSelector(selectGeography);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios.get(geographyRoute);
+      setData(data.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       <Title title="Geography" subtitle="Map of users location." />

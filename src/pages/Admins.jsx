@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectAdmins } from "../redux/slice/managementSlice";
 import { DataGrid } from "@mui/x-data-grid";
-import { Title } from "../components";
+import { Loader, Title } from "../components";
 import { Box } from "@mui/material";
 import { selectMode } from "../redux/slice/modeSlice";
+import axios from "axios";
+import { adminsRoute } from "../utils/api";
 
 const Admins = () => {
-  const admins = useSelector(selectAdmins);
   const mode = useSelector(selectMode);
+  const [loading, setLoading] = useState(true);
+  const [admins, setAdmins] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const admins = await axios.get(adminsRoute);
+      setAdmins(admins.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const columns = [
     {
@@ -50,6 +61,8 @@ const Admins = () => {
       flex: 1,
     },
   ];
+
+  if (loading) return <Loader />;
   return (
     <section className="px-2 md:px-3 lg:px-5 mt-4 mb-6">
       <Title title="Admins" subtitle="List of Admins." />
