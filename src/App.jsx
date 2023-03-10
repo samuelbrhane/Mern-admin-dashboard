@@ -4,7 +4,7 @@ import { createTheme } from "@mui/material/styles";
 import { useEffect, useMemo, useState } from "react";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Layout } from "./components";
+import { Layout, Loader } from "./components";
 import {
   Admins,
   Breakdown,
@@ -41,7 +41,7 @@ function App() {
     getData();
   }, []);
 
-  if (loading) return;
+  if (loading) return <Loader main={true} />;
 
   return (
     <div className={`${mode === "dark" ? "text-[#ecf3e4]" : "text-[#384d21]"}`}>
